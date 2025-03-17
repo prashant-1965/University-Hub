@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.*;
 
-class Sections extends AcademicUnit implements interfaceList
+class Sections extends AcademicUnit
 {
-    private Map<String,ArrayList<String>> section_instructorList;
+    private final Map<String,ArrayList<String>> section_instructorList;
     public Sections()
     {
         section_instructorList = new HashMap<>();
@@ -61,9 +61,10 @@ class Sections extends AcademicUnit implements interfaceList
     }
     @Override
     public ArrayList<String> listOfactivities(ArrayList<String> classItems)
-    {   classItems.add("Add setSection");
-        classItems.add("Add getSection");
-        classItems.add("Add setFaculty");
+    {
+        classItems.add("Add new Section 1");
+        classItems.add("Get Section details 2");
+        classItems.add("Add new Faculty 3");
         return classItems;
     }
 }

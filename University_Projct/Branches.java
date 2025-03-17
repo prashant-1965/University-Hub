@@ -1,9 +1,9 @@
 package University_Projct;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-class Branches extends AcademicUnit
+class Branches extends AcademicUnit implements interfaceList
 {
     private String Branch_name;
     private String Branch_HOD;

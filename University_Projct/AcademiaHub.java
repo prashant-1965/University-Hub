@@ -1,5 +1,5 @@
 package University_Projct;
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class AcademiaHub {
@@ -39,6 +39,8 @@ public class AcademiaHub {
         else if (choice==3)
         {
             AcademicUnit sections = new Sections();
+            Task task = new Task();
+            int ch = task.eachClassActivity(sections);
         }
         else
         {
