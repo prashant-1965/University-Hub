@@ -22,7 +22,6 @@ class Sections extends AcademicUnit
             ArrayList<String> temp = new ArrayList<>();
             section_instructorList.put(section_code,temp);
             System.out.println("Section added Successfully");
-            setSection(section_code);
         }
     }
     public void getSection(String section_code)
