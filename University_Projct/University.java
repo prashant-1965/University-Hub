@@ -28,7 +28,7 @@ class University extends AcademicUnit  implements interfaceList
     @Override
     public void nameSet(String u_name)
     {
-        this.U_name = U_name;
+        this.U_name = u_name;
     }
     public void setLocation(String Location)
     {

@@ -59,7 +59,7 @@ class Sections extends AcademicUnit
         }
     }
     @Override
-    public ArrayList<String> listOfactivities(ArrayList<String> classItems)
+    public ArrayList<String> listOfActivities(ArrayList<String> classItems)
     {
         classItems.add("Add new Section 1");
         classItems.add("Get Section details 2");

@@ -21,9 +21,9 @@ public class AcademiaHub
             case 1:
             {
                 // Verify yourself (Implementation to be done)
-                ArrayList<String> classActivities;
+                ArrayList<String> classActivities = new ArrayList<>();
                 Task task = new Task();
-                ch = task.eachClassActivity(academicUnit.listOfActivities(classActivities = new ArrayList<>()));
+                ch = task.eachClassActivity(academicUnit.listOfActivities(classActivities));
                 University university = new University();
 
                 switch (ch)
@@ -82,33 +82,32 @@ public class AcademiaHub
             }
             case 3:
             {
-                AcademicUnit sections = new Sections();
-                ArrayList<String> classActivities;
+                ArrayList<String> classActivities = new ArrayList<>();
                 Task task = new Task();
-                ch = task.eachClassActivity(academicUnit.listOfActivities(classActivities = new ArrayList<>()));
-                Sections sections1 = new Sections();
+                ch = task.eachClassActivity(academicUnit.listOfActivities(classActivities));
+                Sections sections = new Sections();
                 String section_code = sc.nextLine();
 
                 switch (ch)
                 {
                     case 1:
                     {
-                        sections1.setSection(section_code);
+                        sections.setSection(section_code);
                         System.out.print("Enter Branch Code into which section will be added: ");
                         String b_code = sc.nextLine();
                         Branches branches = new Branches();
-                        branches.setBranch(b_code, sections1);
+                        branches.setBranch(b_code, sections);
                         break;
                     }
                     case 2:
                     {
-                        sections1.getSection(section_code);
+                        sections.getSection(section_code);
                         break;
                     }
                     default:
                     {
                         String id = sc.nextLine();
-                        sections1.setFaculty(section_code, id);
+                        sections.setFaculty(section_code, id);
                         break;
                     }
                 }
