@@ -2,16 +2,6 @@ package University_Projct;
 
 import java.util.*;
 
-class UniversityNode
-{
-    public String branchCode;
-    public ArrayList<UniversityNode> branchList;
-    public UniversityNode(String branchCode)
-    {
-        this.branchCode = branchCode;
-        this.branchList = new ArrayList<>();
-    }
-}
 class University extends AcademicUnit  implements interfaceList
 {
     private String U_name;
@@ -23,6 +13,10 @@ class University extends AcademicUnit  implements interfaceList
     {
         this.defaultBranch = new UniversityNode("U0001");
         this.lastBranchCode = "U0001";
+    }
+
+    public UniversityNode getRoot() {
+        return defaultBranch;
     }
 
     @Override
@@ -45,17 +39,9 @@ class University extends AcademicUnit  implements interfaceList
     }
     public void addBranch(UniversityNode node)
     {
-        defaultBranch.branchList.add(node);
+        defaultBranch.universityBranch.add(node);
         lastBranchCode = node.branchCode;
-        System.out.println("Branch Added Successfully!");
-    }
-
-    public void displayAlLBranch()
-    {
-        for(UniversityNode i:defaultBranch.branchList)
-        {
-            System.out.println(i.branchCode);
-        }
+        System.out.println("Branch ans HOD Added Successfully!");
     }
     public String lastAddedBranch()
     {

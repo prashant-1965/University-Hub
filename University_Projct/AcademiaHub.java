@@ -8,23 +8,22 @@ public class AcademiaHub
     public static void main(String... args)
     {
         AcademicUnit academicUnit = new University();
+        University university = new University();
         Scanner sc = new Scanner(System.in);
         System.out.println("Operations to work with: ");
-        System.out.println("University changes: 1");
+        System.out.println("Update University name/location/Branch: 1");
         System.out.println("Branches changes: 2");
         System.out.println("Sections changes: 3");
         int choice = sc.nextInt();
         int ch;
-
         switch (choice)
         {
             case 1:
             {
                 // Verify yourself (Implementation to be done)
                 ArrayList<String> classActivities = new ArrayList<>();
-                Task task = new Task();
+                commonTask task = new commonTask();
                 ch = task.eachClassActivity(academicUnit.listOfActivities(classActivities));
-                University university = new University();
 
                 switch (ch)
                 {
@@ -58,13 +57,18 @@ public class AcademiaHub
                         System.out.println("New Branch should be preceder of last Added branch : Last Added Brach: "+university.lastAddedBranch());
                         System.out.print("Enter Branch code: ");
                         String code = sc.nextLine();
-                        UniversityNode node = new UniversityNode(code);
+                        System.out.println();
+                        System.out.print("Enter Branch HOD: ");
+                        String name = sc.nextLine();
+                        UniversityNode node = new UniversityNode(code,name);
                         university.addBranch(node);
                         break;
                     }
                     case 4:
                     {
-                        university.displayAlLBranch();
+                        UniversityNode universityRoot = university.getRoot();
+                        commonTask commonTask = new commonTask();
+                        commonTask.displayBranchList(universityRoot);
                         break;
                     }
                     default:
@@ -77,40 +81,65 @@ public class AcademiaHub
             }
             case 2:
             {
-                // Implementation pending
-                break;
+                UniversityNode universityRoot = university.getRoot();
+                commonTask commonTask = new commonTask();
+                System.out.println("All available branch list:- ");
+                commonTask.displayBranchList(universityRoot);
+                ArrayList<String> classActivities = new ArrayList<>();
+                ch = commonTask.eachClassActivity(academicUnit.listOfActivities(classActivities));
+                System.out.print("Enter Branch code : ");
+                String code = sc.nextLine();
+                if(ch==1) {
+                    if(commonTask.isBranchValid(universityRoot, code))
+                    {
+                        System.out.println("Your Branch is empty! Please add section and assign faculty incharge");
+                        System.out.println("Enter Section code");
+                        String sectioncode = sc.nextLine();
+                        System.out.println("Enter name of faculty incharge");
+                        String name = sc.nextLine();
+                        BranchNode branchNode = new BranchNode(sectioncode,name);
+                        commonTask.treeTraversing(universityRoot,code,branchNode);
+                        System.out.println("You have successfully added the section!");
+                    }
+                    else
+                    {
+                        System.out.println("Invalid Branch Code");
+                    }
+                }
+                else if(ch==2)
+                {
+                    if(commonTask.isBranchValid(universityRoot, code))
+                    {
+                        System.out.print("Enter Section code: ");
+                        String sectioncode = sc.nextLine();
+                        System.out.print("Enter faculty name ");
+                        String name = sc.nextLine();
+                        commonTask.treeTraversing(universityRoot,code,sectioncode,name);
+                        System.out.println("Name updated successfully!");
+                    }
+                    else
+                    {
+                        System.out.println("Invalid Branch Code");
+                    }
+                }
+                else if(ch==3)
+                {
+                    if(commonTask.isBranchValid(universityRoot, code))
+                    {
+                        System.out.print("Enter Section code: ");
+                        String sectioncode = sc.nextLine();
+                        commonTask.treeTraversing(universityRoot,code,sectioncode);
+                    }
+                    else
+                    {
+                        System.out.println("Invalid Branch Code");
+                    }
+                }
+
             }
             case 3:
             {
-                ArrayList<String> classActivities = new ArrayList<>();
-                Task task = new Task();
-                ch = task.eachClassActivity(academicUnit.listOfActivities(classActivities));
-                Sections sections = new Sections();
-                String section_code = sc.nextLine();
-
-                switch (ch)
-                {
-                    case 1:
-                    {
-                        sections.setSection(section_code);
-                        System.out.print("Enter Branch Code into which section will be added: ");
-                        String b_code = sc.nextLine();
-                        Branches branches = new Branches();
-                        branches.setBranch(b_code, sections);
-                        break;
-                    }
-                    case 2:
-                    {
-                        sections.getSection(section_code);
-                        break;
-                    }
-                    default:
-                    {
-                        String id = sc.nextLine();
-                        sections.setFaculty(section_code, id);
-                        break;
-                    }
-                }
+                // will be implemented
                 break;
             }
             default:
