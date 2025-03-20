@@ -3,9 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class Task{
-    public int eachClassActivity (AcademicUnit classObjects) {
-        ArrayList<String> activities = new ArrayList<>();
-        classObjects.listOfactivities(activities);
+    public int eachClassActivity (ArrayList<String> activities) {
         System.out.println("Activities to perform");
         for (String i : activities) {
             System.out.println(i);

@@ -4,7 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-class Branches extends AcademicUnit implements interfaceList
+class BranchNode
+{
+    private String Branch_code;
+    private String HOD_code;
+    private ArrayList<BranchNode> sectionList;
+}
+
+class Branches extends AcademicUnit
 {
     private String Branch_code;
     private String HOD_code;
@@ -29,19 +36,8 @@ class Branches extends AcademicUnit implements interfaceList
         }
         System.out.println("Section added successfully");
     }
-    public void nameSet(String Branch_code, String HOD_code, Map<String,ArrayList<Sections>> branchList)
-    {
-        this.Branch_code = Branch_code;
-        this.HOD_code = HOD_code;
-        this.branchList = branchList;
-    }
     @Override
-    public String nameGet()
-    {
-        return Branch_name;
-    }
-    @Override
-    public ArrayList<String> listOfactivities(ArrayList<String> classItems)
+    public ArrayList<String> listOfActivities(ArrayList<String> classItems)
     {   classItems.add("Add new Branch_name, Branch_HOD and sectionsList 1");
         classItems.add("Add new Branch_HOD 2");
         classItems.add("sectionsList 3");
