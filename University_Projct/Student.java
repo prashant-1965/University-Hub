@@ -1,8 +1,5 @@
 package University_Projct;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.*;
 
 class Student extends AcademicUnit
 {

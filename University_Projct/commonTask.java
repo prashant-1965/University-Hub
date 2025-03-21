@@ -6,18 +6,25 @@ class commonTask {
     public int eachClassActivity (ArrayList<String> activities) {
         System.out.println("Activities to perform");
         for (String i : activities) {
-            System.out.println(i);
+            System.out.println("              "+i);
         }
-        Scanner sc = new Scanner(System.in);
-        int ch = sc.nextInt();
-        sc.close();
-        return ch;
+        Scanner sca = new Scanner(System.in);
+        System.out.print("Enter you choice: ");
+        int num = sca.nextInt();
+        sca.nextLine();  // Consume the leftover newline
+        return num;
     }
     public void displayBranchList(UniversityNode root)
     {
-        for(UniversityNode i:root.universityBranch)
+        if(root.universityBranch==null)
         {
-            System.out.println("Branch code: "+i.branchCode+"Branch HOD: "+i.branchHOD);
+            System.out.println("No branch Has been Added yet!");
+        }
+        else
+        {
+            for (UniversityNode i : root.universityBranch) {
+                System.out.println("Branch code: " +i.branchCode+" Branch HOD: " + i.branchHOD);
+            }
         }
     }
 
@@ -32,40 +39,14 @@ class commonTask {
         }
         return  false;
     }
-    public void treeTraversing(UniversityNode root, String code, BranchNode node)
+
+    public void getSectionList(UniversityNode root, String bcode)
     {
         for(UniversityNode i:root.universityBranch)
         {
-            if(i.branchCode.equalsIgnoreCase(code))
+            if(i.branchCode.equalsIgnoreCase(bcode))
             {
-                root.branchList.add(node);
-                break;
-            }
-        }
-    }
-    public void treeTraversing(UniversityNode root, String code, String secCode, String name)
-    {
-        for(UniversityNode i:root.universityBranch)
-        {
-            if(i.branchCode.equalsIgnoreCase(code))
-            {
-                for(BranchNode j:root.branchList)
-                {
-                    if(j.sectionCode.equalsIgnoreCase(secCode))
-                    {
-                        j.facultyInCharge = name;
-                    }
-                }
-            }
-        }
-    }
-    public void treeTraversing(UniversityNode root, String code, String secCode)
-    {
-        for(UniversityNode i:root.universityBranch)
-        {
-            if(i.branchCode.equalsIgnoreCase(code))
-            {
-                for(BranchNode j:root.branchList)
+                for(BranchNode j:i.branchList)
                 {
                     System.out.println(j.sectionCode+" "+j.facultyInCharge);
                 }

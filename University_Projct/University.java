@@ -13,6 +13,8 @@ class University extends AcademicUnit  implements interfaceList
     {
         this.defaultBranch = new UniversityNode("U0001");
         this.lastBranchCode = "U0001";
+        this.U_name = "";
+        this.Location = "";
     }
 
     public UniversityNode getRoot() {
