@@ -9,34 +9,95 @@ public class Test {
         University university = new University();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Testing University Project Functionalities");
+        while (true) {
+            System.out.println("\nTesting Operations:");
+            System.out.println("1. Test University details update");
+            System.out.println("2. Test Branches management");
+            System.out.println("3. Test Sections management");
+            System.out.println("Enter any other number to exit.");
+            System.out.print("Enter Choice: ");
 
-        System.out.println("Testing University Name Set and Get:");
-        university.nameSet("Test University");
-        System.out.println("Expected: Test University, Got: " + university.nameGet());
+            if (!sc.hasNextInt()) {
+                System.out.println("Invalid input. Exiting...");
+                break;
+            }
 
-        System.out.println("Testing University Location Set and Get:");
-        university.setLocation("Test Location");
-        System.out.println("Expected: Test Location, Got: " + university.getLocation());
+            int choice = sc.nextInt();
+            sc.nextLine(); // Consume newline
 
-        System.out.println("Testing Adding a Branch:");
-        UniversityNode branchNode = new UniversityNode("CS101", "Dr. Smith");
-        university.addBranch(branchNode);
-        System.out.println("Last Added Branch: " + university.lastAddedBranch());
+            switch (choice) {
+                case 1: {
+                    System.out.println("\nTesting University Details Update...");
+                    ArrayList<String> classActivities = new ArrayList<>();
+                    commonTask task = new commonTask();
+                    int options = task.eachClassActivity(academicUnit.listOfActivities(classActivities));
 
-        System.out.println("Testing Branch List Display:");
-        UniversityNode universityRoot = university.getRoot();
-        commonTask commonTask = new commonTask();
-        commonTask.displayBranchList(universityRoot);
+                    switch (options) {
+                        case 1:
+                            university.nameSet("Test University");
+                            System.out.println("Set University Name: " + university.nameGet());
+                            break;
+                        case 2:
+                            university.setLocation("Test City");
+                            System.out.println("Set University Location: " + university.getLocation());
+                            break;
+                        case 3:
+                            UniversityNode node = new UniversityNode("CS101", "Dr. Smith");
+                            university.addBranch(node);
+                            System.out.println("Added New Branch: " + university.lastAddedBranch());
+                            break;
+                        case 4:
+                            commonTask commonTask = new commonTask();
+                            commonTask.displayBranchList(university.getRoot());
+                            break;
+                        default:
+                            System.out.println("Invalid Option.");
+                    }
+                    break;
+                }
 
-        System.out.println("Testing Section Addition:");
-        Branches branches = new Branches();
-        BranchNode sectionNode = new BranchNode("S1", "Prof. Johnson");
-        branches.addSection(universityRoot, "CS101", sectionNode);
-        System.out.println("Section Added Successfully");
+                case 2: {
+                    System.out.println("\nTesting Branch Management...");
+                    UniversityNode universityRoot = university.getRoot();
+                    Branches branches = new Branches();
+                    AcademicUnit academicUnit1 = new Branches();
+                    commonTask commonTask = new commonTask();
 
-        System.out.println("Testing Faculty Update:");
-        branches.facultyUpdate(universityRoot, "CS101", "S1", "Dr. Watson");
-        System.out.println("Faculty Updated Successfully");
+                    commonTask.displayBranchList(universityRoot);
+
+                    ArrayList<String> branchActivities = new ArrayList<>();
+                    int branchChoice = commonTask.eachClassActivity(academicUnit1.listOfActivities(branchActivities));
+
+                    System.out.print("Enter Branch code: ");
+                    String bcode = sc.nextLine();
+
+                    if (branchChoice == 1) {
+                        BranchNode branchNode = new BranchNode("S1", "Prof. Johnson");
+                        branches.addSection(universityRoot, bcode, branchNode);
+                        System.out.println("Section Added Successfully!");
+                    } else if (branchChoice == 2) {
+                        branches.facultyUpdate(universityRoot, bcode, "S1", "Prof. Updated");
+                        System.out.println("Faculty Updated Successfully!");
+                    } else if (branchChoice == 3) {
+                        commonTask.getSectionList(universityRoot, bcode);
+                    } else {
+                        System.out.println("Invalid Branch Option.");
+                    }
+                    break;
+                }
+
+                case 3: {
+                    System.out.println("\nTesting Sections Management...");
+                    System.out.println("This feature is not fully implemented yet.");
+                    break;
+                }
+
+                default: {
+                    System.out.println("Thanks for testing. Exiting...");
+                    return; // Exit the program
+                }
+            }
+        }
+        sc.close();
     }
 }
